@@ -31,3 +31,12 @@ export function facturasDeProveedor(facturas, proveedorId) {
   }
   return facturas.filter((f) => f.proveedorId === proveedorId);
 }
+
+/**
+ * Formatea un valor en pesos colombianos, sin decimales.
+ * @param {number} valor
+ * @returns {string} Por ejemplo "$ 119.000"
+ */
+export function formatearPesos(valor) {
+  return '$ ' + Math.round(valor).toLocaleString('es-CO');
+}

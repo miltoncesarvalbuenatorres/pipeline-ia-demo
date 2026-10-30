@@ -27,3 +27,8 @@ test('un proveedor solo ve sus propias facturas', () => {
 test('exige el identificador del proveedor', () => {
   assert.throws(() => facturasDeProveedor([], ''));
 });
+
+test('formatea pesos con separador de miles', async () => {
+  const { formatearPesos } = await import('../src/facturas.js');
+  assert.equal(formatearPesos(119000), '$ 119.000');
+});
