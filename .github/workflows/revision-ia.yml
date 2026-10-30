@@ -1,0 +1,51 @@
+name: Revision IA
+
+# Claude revisa cada PR contra la constitución y la spec.
+# Comenta en el PR; no bloquea el merge (la barrera dura es el check "tests").
+
+on:
+  pull_request:
+    types: [opened, synchronize, ready_for_review, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+  id-token: write
+
+jobs:
+  revision:
+    name: revision-ia
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          prompt: |
+            REPO: ${{ github.repository }}
+            PR: ${{ github.event.pull_request.number }}
+
+            Eres el revisor de código de Ingeneo. Revisa este pull request en español.
+
+            1. Lee `.specify/memory/constitution.md` y `CLAUDE.md`.
+            2. Si el PR toca una funcionalidad con spec en `specs/`, léela y verifica
+               que el cambio cumpla sus criterios de aceptación.
+            3. Revisa: que cada cambio de lógica en `src/` tenga su test en `tests/`,
+               errores evidentes, casos borde sin cubrir, datos reales o secretos en el código.
+
+            Responde con UN solo comentario en el PR (usa `gh pr comment`) con este formato:
+
+            ## Revisión IA
+            **Veredicto:** Aprobado / Aprobado con observaciones / Requiere cambios
+            **Cumple la spec:** sí / no / no aplica (y cuál spec)
+            **Observaciones:** lista corta y concreta; si no hay, escribe "Ninguna".
+
+            Sé breve. No repitas el diff. Recuerda que la decisión final de merge es de una persona.
+          claude_args: |
+            --allowedTools "Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh pr view:*),Read,Glob,Grep"
