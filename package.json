@@ -1,0 +1,14 @@
+{
+  "name": "pipeline-ia-demo",
+  "version": "0.1.0",
+  "description": "Demo del proceso de desarrollo con IA de Ingeneo: rulesets, tests y pipeline",
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "UNLICENSED",
+  "private": true
+}
