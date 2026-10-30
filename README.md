@@ -20,6 +20,9 @@ Ruleset `proteccion-main`:
 | Ruta | Para qué |
 |---|---|
 | `CLAUDE.md` | Contexto y reglas para Claude Code / Cursor |
+| `.specify/memory/constitution.md` | Reglas del proyecto (Spec Kit) |
+| `specs/` | Specs por funcionalidad, con criterios de aceptación |
+| `.claude/skills/`, `.cursor/skills/` | Comandos de Spec Kit para Claude Code y Cursor |
 | `src/` | Código de ejemplo (portal de facturas) |
 | `tests/` | Tests que actúan como barrera de calidad |
 | `.github/workflows/ci.yml` | Pipeline que corre los tests en cada PR |

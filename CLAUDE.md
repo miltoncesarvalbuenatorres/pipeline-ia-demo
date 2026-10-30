@@ -15,6 +15,13 @@ Repo de demostración del proceso de desarrollo con IA de Ingeneo.
 - Mantener las funciones pequeñas y documentadas en español.
 - No agregar dependencias sin aprobación del líder técnico.
 
+## Spec Kit
+
+- Reglas del proyecto: `.specify/memory/constitution.md` (leerla antes de cualquier tarea).
+- Specs: una carpeta por funcionalidad en `specs/NNN-nombre/` con `spec.md`, `plan.md` y `tasks.md`.
+- Flujo: `/speckit-specify`, `/speckit-plan`, `/speckit-tasks`, `/speckit-implement`.
+- Los comandos están en `.claude/skills/` (Claude Code) y `.cursor/skills/` (Cursor).
+
 ## Comandos
 
 - `npm test`: corre todos los tests.
