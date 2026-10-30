@@ -1,7 +1,7 @@
 // Funciones de ejemplo del portal de facturas para proveedores.
 // Sirven solo para probar la barrera de calidad (rulesets + tests).
 
-const IVA_GENERAL = 0.19;
+const IVA_GENERAL = 0.16;
 
 /**
  * Calcula el total de una factura a partir del subtotal.
