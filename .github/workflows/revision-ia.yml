@@ -16,7 +16,8 @@ permissions:
 jobs:
   revision:
     name: revision-ia
-    if: github.event.pull_request.draft == false
+    # Solo PRs de ramas de este repo (no forks) y que no sean borrador.
+    if: github.event.pull_request.draft == false && github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -27,7 +28,6 @@ jobs:
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          show_full_output: true  # temporal, para diagnosticar
           prompt: |
             REPO: ${{ github.repository }}
             PR: ${{ github.event.pull_request.number }}
