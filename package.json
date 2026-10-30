@@ -4,7 +4,7 @@
   "description": "Demo del proceso de desarrollo con IA de Ingeneo: rulesets, tests y pipeline",
   "type": "module",
   "scripts": {
-    "test": "node --test tests/"
+    "test": "node --test"
   },
   "engines": {
     "node": ">=20"
